@@ -1,0 +1,108 @@
+{% load static %}
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>SSH Terminal</title>
+      
+      <link rel="stylesheet" href="{% static 'node_modules/xterm/dist/xterm.css' %}"/>
+      <link rel="stylesheet" href="{% static 'css/editor.css' %}">
+      <script src="{%  static  'node_modules/xterm/dist/xterm.js'%}"></script>
+      <script src="{%  static  'node_modules/xterm/dist/addons/fit/fit.js' %}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+      <script src="{% static 'js/jquery-ajax.js' %}"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="{%  static  'js/tsWorker.js'%}"></script>
+      <script type="text/javascript" src="{% static 'js/loader.js'%}"></script>
+
+  </head>
+  <body>
+        <div class="menu-bar-top" style="text-align:center;">
+            <a href="#" id="run-button">RUN</a>
+        </div>
+      <div class="wrapper"></div>
+        <div id="container" style="height: 90%; width:50%; display:inline-block"></div>
+        <div id="terminal-container" style="height:90%; width:49%; display:inline-block"></div>
+      </div>
+      
+
+      <script>
+          let term;
+          let socket;
+          var dummy;
+          window.addEventListener("load", function() {
+              var terminalContainer = document.getElementById("terminal-container");
+              Terminal.applyAddon(fit);
+
+              term = new Terminal({ cursorBlink: true , rows: 100, cols: 100});
+              term.on('key', (key, ev) => {
+                  //if(key.charCodeAt(0) === 13);
+                  //term.write('\n');
+                  //term.write(key);
+              });
+              term.open(terminalContainer);
+              term.fit();
+              term.writable = 1;
+
+              term.on('data', (data) => {
+                  socket.emit('cmd', data);
+              });
+              
+              console.log('connect io to server');
+
+              socket = io.connect('localhost:4000');
+              socket.emit('exec', 500, 500);
+              console.log('send!!!');
+              socket.on('show', (data) => {
+                  term.write(data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''));
+                  console.log(data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''));
+                  //term.write('\x1b[D');
+              });
+
+
+
+              socket.on('end', (status) => {
+                  socket.disconnect();
+              });
+
+          }, false);
+          document.getElementById("run-button").addEventListener("click", () => {
+              term.clear();
+              getValAxios();
+          });
+
+
+          require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.18.0/min/vs/' }});
+          var editor;
+          require(["vs/editor/editor.main"], function () {
+              editor = monaco.editor.create(document.getElementById('container'), {
+                  value: `#include<iostream> \nusing namespace std;\n\nint main() {\n\tcout << "Hello";\n}`,
+                  language: 'c',
+                  theme: 'hc-black',
+                  automaticLayout: true,
+                  fontSize: "16px"
+              });
+          });
+
+          function getValAxios() {
+              let srccode = editor.getValue();
+              console.log(srccode);
+              axios.post('http://localhost:4000/source', {
+                  code: srccode
+              }).then(res => {
+                  //socket.on("connect", function() {
+                  if(socket.connected)
+                      console.log("============== socket connect!! ===============");
+
+              }).catch(err => {
+                  alert('catch error !! ' + err);
+                  if(socket && socket.connected){
+                      console.log('socket is aleardy exist !! we will delte(in catch)' + socket.id);
+                      socket.disconnect();
+                  }
+              });
+          }
+      </script>
+  </body>
+</html>

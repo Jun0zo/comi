@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+html,
+body{
+  background-color: rgb(10, 25, 47) !important;
+}
+
+.wraper {
+    margin-top: 130px;
+    /* width:80%; */
+    width:1100px;
+    position: relative;
+	left:50%;
+    transform:translateX(-50%);
+    
+}
+
+.search {
+    width:100%;
+
+}
+
+.room-list{
+    
+}
+
+.room{
+    position: relative;
+    width:100%;
+    height:150px;
+    background-color: rgb(23, 42, 69);
+    margin: 20px 0;
+    border-radius: 15px;
+    padding: 20px 40px;
+
+}
+
+.room:hover {
+    cursor:pointer;
+    border: black 2px solid;
+}
+
+.r-image {
+    width:110px;
+    height:110px;
+    border-radius: 20px;
+    float:left
+    
+}
+
+.r-describe {
+    width:80%;
+    height:110px;
+    padding:5px;
+    margin-left:30px;
+    float:left;
+}
+
+.r-title {
+    color: white;
+    font-family: Nanum;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.r-author, .r-duration {
+    color: #9d9d9d;
+    font-family: Nanum;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* fallback */
+
+.pagination {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* room.css */
+
+input{
+    color: white;
+}
+
+  

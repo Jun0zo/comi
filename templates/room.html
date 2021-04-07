@@ -1,0 +1,156 @@
+{%  load static %}
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+        <script src="{% static 'js/materialize.js' %}"></script>
+        <script src="{% static 'js/room.js' %}"></script>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/room_hero.css' %}">
+        <link rel="stylesheet" href="{% static 'css/room.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/material-addon-room.css' %}">
+
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-custom bg-custom">
+            <a class="navbar-brand" href="{% url 'home' %}">COMI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Donate</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                {% if user.is_authenticated %}
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin:0 30px;" onclick="location.href='createroom'" type="button">Create</button>
+                <div class="profile">
+                  <img class="profile-image" src="{% static 'img/user.png' %}">
+                </div>
+                {% else %}
+                  <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='signup'" type="button">Signup</button>
+                {% endif %}
+              </form>
+              
+              <li class="nav-item">
+
+                {% if user.is_authenticated %}
+
+                {% else %}
+                  <a class="nav-link" href="login">Lon In</a>
+                {% endif %}
+              </li>
+            </div>
+            <div class="hidden_profile invisible">  <!-- invisible -->
+              <div class="profile-preview">
+                  <div class="profile">
+                    <img class="profile-image" src="{% static 'img/user.png' %}">
+                  </div>
+                
+                {{ user.get_username }}
+              </div>
+
+              <div class="profile-menu">
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/group.svg' %}" width="30"> My Group</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/upgrade.svg' %}" width="30"> Upgrade</div>
+                  <div onclick="location.href='logout'"> <img src="{% static 'img/icons/logout.svg' %}" width="30"> Log Out</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/theme.svg' %}" width="30"> Theme</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/global.svg' %}" width="30"> Language</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/setting.svg' %}" width="30"> Setting</div>
+              </div>
+            </div>
+          </nav>
+
+          
+
+          <!-- ====================================================  -->
+        <div class="wraper">
+            <div class="search">
+                <div class="row">
+                    <div class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input type="text" id="autocomplete-group" class="autocomplete">
+                          <label for="autocomplete-input">Room Name</label>
+                        </div> <br>
+
+                        <div class="input-field col s12">
+                            <input type="text" id="autocomplete-author" class="autocomplete">
+                            <label for="autocomplete-input">Group Name</label>
+                          </div>
+
+                          <div class="input-field col s12">
+                            <input type="text" id="autocomplete-duration" class="autocomplete">
+                            <label for="autocomplete-input">Author Name</label>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+                
+            <div class="room-list">
+                <div class="room">
+                    <img class="r-image" src="{% static 'img/ksimg.jpg' %}">
+                    <div class="r-describe">
+                        <p class="r-title">군산대 소프트웨어학과 1학년 파이썬 1차시험</p>
+                        <p class="r-author">온병원 교수</p>
+                        <p class="r-duration">군산대 소융과 1학년</p>
+                    </div>
+                </div>
+                <div class="room">
+                    <img class="r-image" src="{% static 'img/koreaimg.jpg' %}">
+                    <div class="r-describe">
+                        <p class="r-title">고려대 컴퓨터 정보통신과 2학년 C++ 쪽지시험</p>
+                        <p class="r-author">최욱현 교수</p>
+                        <p class="r-duration">고려대 정통과 1학년</p>
+                    </div>
+                </div>
+                <div class="room">
+                    <img class="r-image" src="{% static 'img/azuimg.png' %}">
+                    <div class="r-describe">
+                        <p class="r-title">아주대 환경공학과 2학년 C++ 1차 시험</p>
+                        <p class="r-author">라장원 교수</p>
+                        <p class="r-duration">아주대학교 환경공학과 2학년</p>
+                    </div>
+                </div>
+                <div class="room">
+                    <img class="r-image" src="{% static 'img/ksimg.jpg' %}">
+                    <div class="r-describe">
+                        <p class="r-title">군산대 소프트웨어학과 1학년 C언어 2차시험</p>
+                        <p class="r-author">손창원 교수</p>
+                        <p class="r-duration">군산대 소융과 1학년</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </body>
+
+    
+</html>

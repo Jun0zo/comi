@@ -1,0 +1,32 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background-color: rgb(10, 25, 47)  !important;
+  color: white;
+}
+
+
+
+.card-panel {
+    background-color: rgb(23, 42, 69) !important;
+    margin-top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding : 20px;
+}
+
+.terminal-bar {
+    left:50%;
+	transform:translateX(-50%);
+    width:500px;
+    margin-top: 50px;
+}
+
+#login-page {
+    width: 500px; 
+}
+
+input {
+    color: white;
+}

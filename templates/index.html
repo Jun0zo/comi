@@ -1,0 +1,138 @@
+{%  load static %}
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+        <script src="{% static 'js/materialize.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar-style.css' %}">
+        <script src="{% static 'js/hero.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <!-- ======================== nav bar ============================  -->
+        <nav class="navbar navbar-expand-lg navbar-custom bg-custom">
+            <a class="navbar-brand" href="{% url 'home' %}">COMI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="https://joon0zo.tistory.com/">Blog <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Donate</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                {% if user.is_authenticated %}
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin:0 30px;" onclick="location.href='createroom'" type="button">Create</button>
+                <div class="profile">
+                  <img class="profile-image" src="{% static 'img/user.png' %}">
+                </div>
+                {% else %}
+                  <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='signup'" type="button">Signup</button>
+                {% endif %}
+              </form>
+
+              <li class="nav-item">
+
+                {% if user.is_authenticated %}
+
+
+                {% else %}
+                  <a class="nav-link" href="login">Lon In</a>
+                {% endif %}
+              </li>
+            </div>
+            <div class="hidden_profile invisible">  <!-- invisible -->
+              <div class="profile-preview">
+                  <div class="profile">
+                    <img class="profile-image" src="{% static 'img/user.png' %}">
+                  </div>
+
+                {{ user.get_username }}
+              </div>
+              <div class="profile-menu">
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/group.svg' %}" width="30"> My Group</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/upgrade.svg' %}" width="30"> Upgrade</div>
+                  <div onclick="location.href='logout'"> <img src="{% static 'img/icons/logout.svg' %}" width="30"> Log Out</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/theme.svg' %}" width="30"> Theme</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/global.svg' %}" width="30"> Language</div>
+                  <div onclick="location.href='signup'"> <img src="{% static 'img/icons/setting.svg' %}" width="30"> Setting</div>
+              </div>
+            </div>
+          </nav>
+
+          
+        {%if user.is_authenticate %}
+        
+        {% endif %}
+        <div class="intro">
+            <ul class="title-list">
+                <li>Leader of Coding Education</li>
+                <li>Go Crazy with Coding!</li>
+            </ul>
+            <h3 class="title typing"></h3>
+            <p>Stop wasting time producing a report. We give you instant IDE to learn and study group.</p>
+
+            <div class="goto-button" onclick="location.href='room'">
+                STUDY
+            </div>
+        </div>
+        <!-- ========================== nav bar ==========================  -->
+            
+            <div class="hero-body">
+                <div class="container">
+                <div class="columns">
+                    <div class="column is-3 is-flex">
+                    </div>
+                    <div class="column is-flex">
+                    <div class="column-child terminal shadow">
+                        <div class="terminal-bar dark-mode">
+                        <div class="icon-btn close"></div>
+                        <div class="icon-btn min"></div>
+                        <div class="icon-btn max"></div>
+                        <div class="terminal-bar-text is-hidden-mobile dark-mode-text">guest@COMI: ~</div>
+                        </div>
+                        <div class="terminal-window primary-bg" onclick="document.getElementById('dummyKeyboard').focus();">
+                        <div class="terminal-output" id="terminalOutput">
+                            <div class="terminal-line">
+                            <span class="help-msg">Welcome to COMI main page. — Type <span class="code">help</span> for a list of supported commands.</span>
+                            </div>
+                        </div>
+                        <div class="terminal-line">
+                            
+                            <span class="success">➜</span> <span class="directory">~</span> <span class="user-input" id="userInput"></span>
+                            <input type="text" id="dummyKeyboard" class="dummy-keyboard">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        <!-- //====================================================  -->
+        <footer class="footer">
+            <div class="content has-text-centered">
+            <p>
+                Made with <i class="fas fa-heart icon"></i> by Jatin Rao.
+            </p>
+            </div>
+        </footer>
+    </body>
+</html>

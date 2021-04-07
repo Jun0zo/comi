@@ -1,0 +1,35 @@
+.bg-custom {
+    background-color: rgb(10, 25, 47) !important;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 10;
+    width:100%;
+}
+
+.navbar-custom {
+    color: #9d9d9d;
+}
+
+.navbar a {
+    color: #9d9d9d;
+    vertical-align:middle; display:inline-block;
+
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+.navbar-brand{
+    font-size:25px;
+    vertical-align:middle; display:inline-block;
+    color: white;
+}
+
+.nav-link {
+	margin-left:10px;
+}

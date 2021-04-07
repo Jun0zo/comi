@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+        body {
+            font-family: helvetica, sans-serif, arial;
+            font-size: 1em;
+            background-color:#212E44;
+            margin: 0;
+            height:100%;
+            width:100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .wrapper{
+            position: absolute;
+            height:90%;
+            width: 100%;
+            background-color: black;
+        }
+
+        #container {
+            position: relative;
+            height:90%;
+        }
+
+        #terminal-container {
+            width: 100%;
+            display: inline-block;
+
+            bordoer:1px blue solid;
+        }
+
+        .function {
+            display: inline-block;
+            float: right;
+        }
+
+        #terminal-container .terminal {
+            background-color: #111;
+            color: #fafafa;
+            padding: 2px;
+        }
+
+        #terminal-container .terminal:focus .terminal-cursor {
+            background-color: #fafafa;
+        }
+
+        .menu-bar-top {
+              background-color:black;
+              display: inline-block;
+              width:100%;
+              padding:20px 0;
+              height:5%;
+        }
+
+        #run-button::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 100%;
+            bottom: 0;
+            background: #cecd24;
+            transition: 0.3s 0.2s cubic-bezier(0.1, 0, 0.1, 1), left 0.3s cubic-bezier(0.1, 0, 0.1, 1);
+            z-index: -1;
+        }
+        #run-button::after {
+            content: "";
+            display: inline-block;
+            background-image: url("https://image.flaticon.com/icons/png/128/109/109617.png");
+            position: absolute;
+            top: 0;
+            left: calc(100% - 3em);
+            right: 3em;
+            bottom: 0;
+            background-size: 1.5em;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.3s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+        #run-button:hover {
+            padding: 0.5em 3.5em 0.5em 0.5em;
+        }
+        #run-button:hover::before {
+            left: calc(100% - 3em);
+            right: 0;
+            transition: 0.3s cubic-bezier(0.1, 0, 0.1, 1), left 0.3s 0.2s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+        #run-button:hover::after {
+            right: 0;
+            transition: right 0.3s 0.2s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+        #run-button {
+            left: 50%;
+            transform: translate(0, 0);
+            color: #cecd24;
+            text-decoration: none;
+            font-size: 20px;
+            display: inline-block;
+            font-family: Montserrat;
+            text-transform: uppercase;
+            padding: 0.5em 2em;
+            border: 2px solid #cecd24;
+            transition: 0.02s 0.2s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+
+        .buttons {
+            width:100px;
+            display: block;
+        }

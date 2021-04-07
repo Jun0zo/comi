@@ -1,0 +1,156 @@
+{% load static %}
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{%  static 'js/src_dropzone.js' %}"></script>
+
+        <link rel="stylesheet" href="{%  static 'css/basic.css' %}">
+        <link rel="stylesheet" href="{%  static 'css/dropzone.css' %}">
+        <link rel="stylesheet" href="{%  static 'css/create_room.css' %}">
+    </head>
+    <body>
+        
+        <div class="q_input">
+            <nav class="q_tab">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Q1</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Q2</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Q3</a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+                <!--       tab1          -->
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    
+                    <div class="input-field col s6">
+                        <input id="input_text" type="text" data-length="10">
+                        <label for="input_text">Question title</label>       
+                    </div>
+
+                    <div class="q_content">
+                        <label for="" class="label-title">Question Name</label>
+                        <div id="editor" class="validate">
+                            <p> abc<br><br><br><br><br><br><br><br> </p>
+                        </div>
+                    </div>
+                     <!-- Modal Button -->
+                    <div class="tc-upload">
+                        <label for="" class="label-title">Test cases</label>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">UPLOAD</a>
+                    </div>
+                    
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <div class="file-upload-zone">
+                                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                                </div>   
+                            </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
+                    </div>
+                    <!-- //Modal Structure -->
+                </div>
+               
+
+                <!--       tab2          -->
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="input-field col s6">
+                        <input id="input_text" type="text" data-length="10">
+                        <label for="input_text">Question title</label>       
+                    </div>
+
+                    <div class="q_content">
+                        <label for="" class="label-title">Question Name</label>
+                        <div id="editor" class="validate">
+                            <p> abc<br><br><br><br><br><br><br><br> </p>
+                        </div>
+                    </div>
+                     <!-- Modal Button -->
+                    <div class="tc-upload">
+                        <label for="" class="label-title">Test cases</label>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">UPLOAD</a>
+                    </div>
+                    
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <div class="file-upload-zone">
+                                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                                </div>
+                                
+                            </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
+                    </div>
+                    <!-- //Modal Structure -->
+                </div>
+
+                <!--       tab3          -->
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> 
+                    <div class="input-field col s6">
+                        <input id="input_text" type="text" data-length="10">
+                        <label for="input_text">Question title</label>       
+                    </div>
+
+                    <div class="q_content">
+                        <label for="" class="label-title">Question Name</label>
+                        <div id="editor" class="validate">
+                            <p> abc<br><br><br><br><br><br><br><br> </p>
+                        </div>
+                    </div>
+                     <!-- Modal Button -->
+                    <div class="tc-upload">
+                        <label for="" class="label-title">Test cases</label>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">UPLOAD</a>
+                    </div>
+                    
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <div class="file-upload-zone">
+                                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                                </div>
+                                
+                            </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
+                    </div>
+                    <!-- //Modal Structure -->
+                </div>
+            </div>
+        </div>
+
+        <div class="button-dummy">
+            <a href="#!" class="btn waves-effect waves-light">Cancle</a>
+            <a href="#!" class="btn waves-effect waves-light">Send</a>
+        </div>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                    console.log( editor );
+                } )
+                .catch( error => {
+                    console.error( error );
+            });
+
+            $(document).ready(function(){
+                $('.modal').modal();
+            });
+        </script>
+    </body>
+</html>

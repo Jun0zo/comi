@@ -1,0 +1,101 @@
+.bg-custom {
+    background-color: rgb(10, 25, 47) !important;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 10;
+    width:100%;
+}
+
+.navbar-custom {
+    color: #9d9d9d;
+}
+
+.navbar a {
+    color: #9d9d9d;
+    vertical-align:middle; display:inline-block;
+
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+.navbar-brand{
+    font-size:25px;
+    vertical-align:middle; display:inline-block;
+    color: white;
+}
+
+.nav-link {
+	margin-left:10px;
+}
+
+
+/*  profile */
+
+/*      hidden      */
+
+.profile{
+    margin-top:5px;
+    background-color: white;
+    border-radius: 100px;
+    border: 3px black solid;
+
+    width:56px;
+    height:56px;
+
+    margin:auto;
+}
+
+.profile:hover {
+
+    cursor:pointer;
+}
+
+.profile-image {
+    width:50px;
+    height:50px;
+}
+
+.hidden_profile{
+
+    position: fixed;
+    top:10%;
+    right:2%;
+    width:300px;
+    background-color: rgb(31,31,34);
+    box-shadow: 2px 2px 20px 2px black;
+}
+
+/*      hidden      */
+.profile-preview {
+    width: 100%;
+    height: 200px;
+    text-align: center;
+
+    padding:20px 0;
+}
+
+
+.profile-menu div{
+    text-align: left;
+    line-height: 50px;
+}
+
+.profile-menu div:hover{
+    cursor:pointer;
+    background-color: rgb(213, 217, 219);
+    color:black;
+}
+
+.profile-menu img{
+    margin: auto 10px auto 20px;
+}
+
+a {
+    text-decoration: none !important;
+}
