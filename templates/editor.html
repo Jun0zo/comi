@@ -8,10 +8,11 @@
       
       <link rel="stylesheet" href="{% static 'node_modules/xterm/dist/xterm.css' %}"/>
       <link rel="stylesheet" href="{% static 'css/editor.css' %}">
+      
+      <script src="{% static 'js/jquery-ajax.js' %}"></script>
       <script src="{%  static  'node_modules/xterm/dist/xterm.js'%}"></script>
       <script src="{%  static  'node_modules/xterm/dist/addons/fit/fit.js' %}"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-      <script src="{% static 'js/jquery-ajax.js' %}"></script>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script src="{%  static  'js/tsWorker.js'%}"></script>
       <script type="text/javascript" src="{% static 'js/loader.js'%}"></script>
@@ -28,54 +29,13 @@
       
 
       <script>
-          let term;
-          let socket;
-          var dummy;
-          window.addEventListener("load", function() {
-              var terminalContainer = document.getElementById("terminal-container");
-              Terminal.applyAddon(fit);
-
-              term = new Terminal({ cursorBlink: true , rows: 100, cols: 100});
-              term.on('key', (key, ev) => {
-                  //if(key.charCodeAt(0) === 13);
-                  //term.write('\n');
-                  //term.write(key);
-              });
-              term.open(terminalContainer);
-              term.fit();
-              term.writable = 1;
-
-              term.on('data', (data) => {
-                  socket.emit('cmd', data);
-              });
-              
-              console.log('connect io to server');
-
-              socket = io.connect('localhost:4000');
-              socket.emit('exec', 500, 500);
-              console.log('send!!!');
-              socket.on('show', (data) => {
-                  term.write(data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''));
-                  console.log(data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''));
-                  //term.write('\x1b[D');
-              });
-
-
-
-              socket.on('end', (status) => {
-                  socket.disconnect();
-              });
-
-          }, false);
-          document.getElementById("run-button").addEventListener("click", () => {
-              term.clear();
-              getValAxios();
-          });
-
+          let term
+          let socket
+          var dummy
+          var editor;
 
           require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.18.0/min/vs/' }});
-          var editor;
-          require(["vs/editor/editor.main"], function () {
+          require(["vs/editor/editor.main"], ()=> {
               editor = monaco.editor.create(document.getElementById('container'), {
                   value: `#include<iostream> \nusing namespace std;\n\nint main() {\n\tcout << "Hello";\n}`,
                   language: 'c',
@@ -85,9 +45,43 @@
               });
           });
 
-          function getValAxios() {
-              let srccode = editor.getValue();
-              console.log(srccode);
+          function loadTerminal(){
+            var terminalContainer = document.getElementById("terminal-container")
+              Terminal.applyAddon(fit)
+
+              term = new Terminal({ cursorBlink: true , rows: 100, cols: 100})
+              term.on('key', (key, ev) => {
+                  //if(key.charCodeAt(0) === 13)
+                  //term.write('\n')
+                  //term.write(key)
+              });
+              term.open(terminalContainer)
+              term.fit()
+              term.writable = 1;
+
+              term.on('data', (data) => {
+                  socket.emit('cmd', data);
+              });
+          }
+
+          function setSocket(server_address){
+            socket = io.connect(server_address)
+            socket.emit('exec', 500, 500)
+            socket.on('show', (data) => {
+                term.write(data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''))
+                console.log('data : ', data.replace(/root@[a-z|0-9]+:[^\n]+#/, ''))
+                //term.write('\x1b[D');
+            });
+
+            socket.on('end', (status) => {
+                socket.disconnect();
+            });
+            return socket
+          }
+
+          function execAtServer() {
+              let srccode = editor.getValue()
+              // console.log(srccode)
               axios.post('http://localhost:4000/source', {
                   code: srccode
               }).then(res => {
@@ -96,13 +90,28 @@
                       console.log("============== socket connect!! ===============");
 
               }).catch(err => {
-                  alert('catch error !! ' + err);
+                  alert('catch error !! ' + err)
                   if(socket && socket.connected){
                       console.log('socket is aleardy exist !! we will delte(in catch)' + socket.id);
                       socket.disconnect();
                   }
               });
           }
+
+          $(window).load(() => {
+              console.log('!!')
+              loadTerminal()
+              setSocket('localhost:4000')
+          });
+
+          $("#run-button").click(() => {
+              term.clear()
+              execAtServer()
+          });
+
+          
+
+          
       </script>
   </body>
 </html>
