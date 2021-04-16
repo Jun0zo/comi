@@ -31,7 +31,7 @@ $ python ./manage.py runserver
 
 ## Demo
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/37208901/113820557-d39ba600-97b5-11eb-9095-c75a410593cb.gif)
+![main_shot](https://user-images.githubusercontent.com/37208901/114955908-a4adc000-9e98-11eb-8f51-e5b5af305805.gif)
 
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/37208901/113825127-8e7a7280-97bb-11eb-912a-cf3341f22ee9.gif)
 
