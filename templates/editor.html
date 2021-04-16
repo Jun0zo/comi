@@ -23,7 +23,7 @@
             <a href="#" id="run-button">RUN</a>
         </div>
       <div class="wrapper"></div>
-        <div id="container" style="height: 90%; width:50%; display:inline-block"></div>
+        <div id="editor-container" style="height: 90%; width:50%; display:inline-block"></div>
         <div id="terminal-container" style="height:90%; width:49%; display:inline-block"></div>
       </div>
       
@@ -36,7 +36,7 @@
 
           require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.18.0/min/vs/' }});
           require(["vs/editor/editor.main"], ()=> {
-              editor = monaco.editor.create(document.getElementById('container'), {
+              editor = monaco.editor.create(document.getElementById('editor-container'), {
                   value: `#include<iostream> \nusing namespace std;\n\nint main() {\n\tcout << "Hello";\n}`,
                   language: 'c',
                   theme: 'hc-black',
@@ -47,21 +47,21 @@
 
           function loadTerminal(){
             var terminalContainer = document.getElementById("terminal-container")
-              Terminal.applyAddon(fit)
+            Terminal.applyAddon(fit)
 
-              term = new Terminal({ cursorBlink: true , rows: 100, cols: 100})
-              term.on('key', (key, ev) => {
-                  //if(key.charCodeAt(0) === 13)
-                  //term.write('\n')
-                  //term.write(key)
-              });
-              term.open(terminalContainer)
-              term.fit()
-              term.writable = 1;
+            term = new Terminal({ cursorBlink: true , rows: 100, cols: 100})
+            term.on('key', (key, ev) => {
+                //if(key.charCodeAt(0) === 13)
+                //term.write('\n')
+                //term.write(key)
+            });
+            term.open(terminalContainer)
+            term.fit()
+            term.writable = 1;
 
-              term.on('data', (data) => {
-                  socket.emit('cmd', data);
-              });
+            term.on('data', (data) => {
+                socket.emit('cmd', data);
+            });
           }
 
           function setSocket(server_address){
@@ -108,10 +108,6 @@
               term.clear()
               execAtServer()
           });
-
-          
-
-          
       </script>
   </body>
 </html>
