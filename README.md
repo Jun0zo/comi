@@ -31,8 +31,12 @@ $ python ./manage.py runserver
 
 ## Demo
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/37208901/113820557-d39ba600-97b5-11eb-9095-c75a410593cb.gif)
+![main_shot](https://user-images.githubusercontent.com/37208901/114955908-a4adc000-9e98-11eb-8f51-e5b5af305805.gif)
 
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/37208901/113825127-8e7a7280-97bb-11eb-912a-cf3341f22ee9.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/37208901/114959633-5c929b80-9ea0-11eb-883d-38a2a77607a7.gif)
 
-![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/37208901/113826009-a1417700-97bc-11eb-9255-9b382ef593a7.gif)
+<img src="https://user-images.githubusercontent.com/37208901/114959643-60262280-9ea0-11eb-8754-9f0b6f31a804.gif" style="width:100%; max-width:100%;">
+
+
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/37208901/114959646-62887c80-9ea0-11eb-81a6-c14a4ffb1f9a.gif)
+
