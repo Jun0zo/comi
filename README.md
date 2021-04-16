@@ -35,7 +35,8 @@ $ python ./manage.py runserver
 
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/37208901/114959633-5c929b80-9ea0-11eb-883d-38a2a77607a7.gif)
 
-![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/37208901/114959643-60262280-9ea0-11eb-8754-9f0b6f31a804.gif)
+<img src="https://user-images.githubusercontent.com/37208901/114959643-60262280-9ea0-11eb-8754-9f0b6f31a804.gif" style="max-width:100%;">
+
 
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/37208901/114959646-62887c80-9ea0-11eb-81a6-c14a4ffb1f9a.gif)
 
